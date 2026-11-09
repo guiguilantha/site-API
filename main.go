@@ -53,6 +53,10 @@ func getCharacter() []Character {
 		return nil
 	}
 
+	for i := range liste.Results {
+		liste.Results[i].ID = i + 1
+	}
+
 	return liste.Results
 }
 
