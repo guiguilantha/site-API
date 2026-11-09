@@ -13,6 +13,10 @@ type Character struct {
 	Name   string `json:"name"`
 	Image  string `json:"image"`
 	Status string `json:"status"`
+	Species string `json:"species"`
+	Gender string `json:"gender"`
+	Origin string `json:"origin"`
+	Location string `json:"location"`
 }
 
 type ListeCharacters struct {
@@ -48,7 +52,6 @@ func getCharacter() []Character {
 	}
 
 	var liste ListeCharacters
-
 	if err := json.NewDecoder(resp.Body).Decode(&liste); err != nil {
 		fmt.Println("erreur de décodage :", err)
 		return nil
@@ -68,3 +71,4 @@ func main() {
 	log.Println("Serveur lancé sur http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
+
