@@ -9,14 +9,20 @@ import (
 )
 
 type Character struct {
-	ID     int    `json:"id"`
-	Name   string `json:"name"`
-	Image  string `json:"image"`
-	Status string `json:"status"`
-	Species string `json:"species"`
-	Gender string `json:"gender"`
-	Origin string `json:"origin"`
-	Location string `json:"location"`
+	ID       int      `json:"id"`
+	Name     string   `json:"name"`
+	Status   string   `json:"status"`
+	Species  string   `json:"species"`
+	Type     string   `json:"type"`
+	Gender   string   `json:"gender"`
+	Image    string   `json:"image"`
+	Origin   Location `json:"origin"`
+	Location Location `json:"location"`
+}
+
+type Location struct {
+	Name string `json:"name"`
+
 }
 
 type ListeCharacters struct {
