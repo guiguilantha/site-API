@@ -8,13 +8,13 @@ import (
 	"net/http"
 )
 
-type Pokemon struct {
+type RicketMorty struct {
 	ID   int
 	Name string `json:"name"`
 }
 
-type ListePokémon struct {
-	Result []Pokemon `json:"results"`
+type ListeRandM struct {
+	Result []RicketMorty `json:"results"`
 }
 
 func accueil(w http.ResponseWriter, r *http.Request) {
@@ -25,14 +25,14 @@ func accueil(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	pokémons := getPokemon()
+	r&m := getRandM()
 
-	if err := tmpl.Execute(w, pokémons); err != nil {
+	if err := tmpl.Execute(w, r&m); err != nil {
 		log.Printf("erreur de rendu du template : %v", err)
 	}
 }
 
-func getPokemon() []Pokemon {
+func getRandM() []RicketMorty {
 	resp, err := http.Get("https://rickandmortyapi.com/api/character")
 	if err != nil {
 		fmt.Println("erreur :", err)
@@ -45,7 +45,7 @@ func getPokemon() []Pokemon {
 		return nil
 	}
 
-	var liste ListePokémon
+	var liste ListeRandM
 	if err := json.NewDecoder(resp.Body).Decode(&liste); err != nil {
 		fmt.Println("erreur de décodage :", err)
 		return nil
