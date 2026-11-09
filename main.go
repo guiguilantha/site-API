@@ -13,6 +13,10 @@ type Character struct {
 	Name   string `json:"name"`
 	Image  string `json:"image"`
 	Status string `json:"status"`
+	Species string `json:"species"`
+	Gender string `json:"gender"`
+	Origin string `json:"origin"`
+	Location string `json:"location"`
 }
 
 type ListeCharacters struct {
