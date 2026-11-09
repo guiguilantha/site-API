@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pokédex</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <h1>Pokédex</h1>
+        <div class="grille">
+            {{range .}}
+            <div class="carte">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{.ID}}.png" alt="{{.Name}}">
+                <p>n° {{.ID}}</p>
+                <h2>{{.Name}}</h2>
+            </div>
+            {{end}}
+        </div>
+    </body>
+</html>
