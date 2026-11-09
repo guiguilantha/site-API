@@ -8,13 +8,15 @@ import (
 	"net/http"
 )
 
-type RicketMorty struct {
-	ID   int
-	Name string `json:"name"`
+type Character struct {
+	ID     int    `json:"id"`
+	Name   string `json:"name"`
+	Image  string `json:"image"`
+	Status string `json:"status"`
 }
 
-type ListeRandM struct {
-	Result []RicketMorty `json:"results"`
+type ListeCharacters struct {
+	Results []Character `json:"results"`
 }
 
 func accueil(w http.ResponseWriter, r *http.Request) {
@@ -25,14 +27,14 @@ func accueil(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	r&m := getRandM()
+	character := getCharacter()
 
-	if err := tmpl.Execute(w, r&m); err != nil {
+	if err := tmpl.Execute(w, character); err != nil {
 		log.Printf("erreur de rendu du template : %v", err)
 	}
 }
 
-func getRandM() []RicketMorty {
+func getCharacter() []Character {
 	resp, err := http.Get("https://rickandmortyapi.com/api/character")
 	if err != nil {
 		fmt.Println("erreur :", err)
@@ -45,16 +47,18 @@ func getRandM() []RicketMorty {
 		return nil
 	}
 
-	var liste ListeRandM
+	var liste ListeCharacters
+
 	if err := json.NewDecoder(resp.Body).Decode(&liste); err != nil {
 		fmt.Println("erreur de décodage :", err)
 		return nil
 	}
 
-	for i := range liste.Result {
-		liste.Result[i].ID = i + 1
+	for i := range liste.Results {
+		liste.Results[i].ID = i + 1
 	}
-	return liste.Result
+
+	return liste.Results
 }
 
 func main() {

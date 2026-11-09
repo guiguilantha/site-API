@@ -2,15 +2,15 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>Pokédex</title>
+        <title>Rick et Morty</title>
         <link rel="stylesheet" href="/static/style.css">
     </head>
     <body>
-        <h1>Pokédex</h1>
+        <h1>Personnages de Rick et Morty</h1>
         <div class="grille">
             {{range .}}
             <div class="carte">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{.ID}}.png" alt="{{.Name}}">
+                <img src="{{.Image}}" alt="{{.Name}}">
                 <p>n° {{.ID}}</p>
                 <h2>{{.Name}}</h2>
             </div>
